@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from mangum import Mangum
-import random
+from move_logic import choose_direction
 
 app = FastAPI()
 
@@ -19,9 +19,7 @@ def read_root():
 
 @app.post("/move")
 def move(request: dict):
-    direction = random.choice(["up", "down", "left", "right"])
-    print(request)
-    print(direction)
+    direction = choose_direction(request)
     return {
     "move": direction,
     "shout": "Moving up!"
