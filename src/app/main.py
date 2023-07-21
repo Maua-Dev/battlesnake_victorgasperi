@@ -10,9 +10,9 @@ def read_root():
     return {
             "apiversion": "1",
             "author": "VictorGasperi",
-            "color": "#888888",
-            "head": "default",
-            "tail": "default",
+            "color": "#9370DB",
+            "head": "evil",
+            "tail": "bolt",
             "version": "0.0.1-beta"
             }
 
