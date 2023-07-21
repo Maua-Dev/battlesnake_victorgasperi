@@ -5,23 +5,23 @@ import random
 #evitar colidir com a parede
 #randomizar os movimentos restantes
 
-def avoid_body(body, possible_moves):
-    remove = []
+def avoid_body(body, next_movement):
+    to_remove = []
     
-    for direction, future_position in possible_moves.items():
+    for direction, future_position in next_movement.items():
         if future_position in body:
-            remove.append(direction)
+            to_remove.append(direction)
     
-    remove = set(remove)
-    for direction in remove:
-        del possible_moves[direction]    
+    to_remove = set(to_remove)
+    for direction in to_remove:
+        del next_movement[direction]    
     
-    return possible_moves
+    return next_movement
 
-def avoid_wall(board_width, board_height, possible_moves):
-    remove = []
+def avoid_wall(board_width, board_height, next_movement):
+    to_remove = []
 
-    for direction, future_position in possible_moves.items():
+    for direction, future_position in next_movement.items():
         right_out_range = future_position["x"] == board_width
         left_out_range = future_position["x"] < 0
 
@@ -29,33 +29,33 @@ def avoid_wall(board_width, board_height, possible_moves):
         down_out_range = future_position["y"] < 0
 
         if right_out_range:
-            remove.append(direction)
+            to_remove.append(direction)
         elif left_out_range:
-            remove.append(direction)
+            to_remove.append(direction)
         elif up_out_range:
-            remove.append(direction)
+            to_remove.append(direction)
         elif down_out_range:
-            remove.append(direction)
+            to_remove.append(direction)
 
-    remove = set(remove)
-    for direction in remove:
-        del possible_moves[direction]
+    to_remove = set(to_remove)
+    for direction in to_remove:
+        del next_movement[direction]
     
-    return possible_moves
+    return next_movement
 
-def avoid_snake(snakes_position, possible_moves):
-    remove = []
+def avoid_snake(snakes_position, next_movement):
+    to_remove = []
 
     for snake in snakes_position:
-        for direction, future_position in possible_moves.items():
+        for direction, future_position in next_movement.items():
             if future_position in snake["body"]:
-                remove.append(direction)                       
+                to_remove.append(direction)                       
 
-    remove = set(remove)    
-    for direction in remove:
-        del possible_moves[direction]
+    to_remove = set(to_remove)    
+    for direction in to_remove:
+        del next_movement[direction]
     
-    return possible_moves
+    return next_movement
 
 def closest_food(foods, head):
     food_positions = []
@@ -72,14 +72,14 @@ def closest_food(foods, head):
 
     return foods[tree_query[0]]
 
-def choose_direction(data: dict) -> str:
+def choose_direction(request: dict) -> str:
 
-    my_head = data["you"]["head"]
-    my_body = data["you"]["body"]
-    board_height = data["board"]["height"]
-    board_width = data["board"]["width"]
-    other_snakes = data["board"]["snakes"]
-    food = data["board"]["food"]
+    my_head = request["you"]["head"]
+    my_body = request["you"]["body"]
+    board_height = request["board"]["height"]
+    board_width = request["board"]["width"]
+    other_snakes = request["board"]["snakes"]
+    food = request["board"]["food"]
 
     next_movement = {
         "up": {

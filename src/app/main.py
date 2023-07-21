@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from mangum import Mangum
-from move_logic import choose_direction
+from logic.move_logic import choose_direction
 
 app = FastAPI()
 
@@ -22,7 +22,7 @@ def move(request: dict):
     direction = choose_direction(request)
     return {
     "move": direction,
-    "shout": "Moving up!"
+    "shout": "What will be my next move ?"
 }
 
 
