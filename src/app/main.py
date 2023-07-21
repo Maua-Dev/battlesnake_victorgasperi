@@ -16,6 +16,14 @@ def read_root():
             "version": "0.0.1-beta"
             }
 
+@app.post("/move")
+def move(request: dict):
+    print(request)
+    return {
+  "move": "up",
+  "shout": "Moving up!"
+}
+
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int):
