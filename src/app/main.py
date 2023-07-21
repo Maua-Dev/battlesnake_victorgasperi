@@ -19,8 +19,7 @@ def read_root():
 
 @app.post("/move")
 def move(request: dict):
-    direction = random.choice("up", "down", "left", "right")
-    direction = str(direction)
+    direction = random.choice(["up", "down", "left", "right"])
     print(request)
     print(direction)
     return {
