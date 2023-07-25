@@ -8,9 +8,9 @@ class Test_App:
         assert resp == {
             "apiversion": "1",
             "author": "VictorGasperi",
-            "color": "#9370DB",
-            "head": "evil",
-            "tail": "bolt",
+            "color": "#FF1493",
+            "head": "tiger-king",
+            "tail": "weight",
             "version": "0.0.1-beta"
             }
 

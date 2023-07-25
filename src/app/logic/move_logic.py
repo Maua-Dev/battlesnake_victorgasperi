@@ -72,6 +72,19 @@ def closest_food(foods, head):
 
     return foods[tree_query[0]]
 
+def get_food(next_movement, head, food_position):
+    previous_distance_x = abs(head["x"] - food_position["x"])
+    previous_distance_y = abs(head["y"] - food_position["y"])
+
+    for direction, future_position in next_movement.items():
+        future_distance_x = abs(future_position["x"] - food_position["x"])
+        future_distance_y = abs(future_position["y"] - food_position["y"])
+
+        if future_distance_x < previous_distance_x or future_distance_y < previous_distance_y:
+            return direction
+        
+    return list(next_movement.keys())
+
 def choose_direction(request: dict) -> str:
 
     my_head = request["you"]["head"]
@@ -105,11 +118,16 @@ def choose_direction(request: dict) -> str:
     next_movement = avoid_snake(other_snakes, next_movement)
     closest_food_possible = closest_food(food, my_head)
 
-    next_movement = list(next_movement.keys())
+    
     if(len(next_movement) == 0):
         move = "down"
     
-    move = random.choice(next_movement)
+    if closest_food_possible is None:
+        next_movement = list(next_movement.keys())
+        move = random.choice(next_movement)
+    else:
+        move = get_food(next_movement, my_head, closest_food_possible)
+
     print(move)
     
     return move

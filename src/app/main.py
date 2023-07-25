@@ -12,8 +12,8 @@ def read_root():
             "apiversion": "1",
             "author": "VictorGasperi",
             "color": "#FF1493",
-            "head": "evil",
-            "tail": "bolt",
+            "head": "tiger-king",
+            "tail": "weight",
             "version": "0.0.1-beta"
             }
 
