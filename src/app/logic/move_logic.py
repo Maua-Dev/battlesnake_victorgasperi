@@ -64,7 +64,7 @@ def closest_food(foods, head):
         return None
 
     for food in foods:
-        food_positions.append(food["x"], food["y"])
+        food_positions.append( (food["x"], food["y"]) )
     
     tree = spatial.KDTree(food_positions)
 
