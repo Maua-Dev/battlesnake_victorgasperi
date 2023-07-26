@@ -118,17 +118,15 @@ def choose_direction(request: dict) -> str:
     next_movement = avoid_snake(other_snakes, next_movement)
     closest_food_possible = closest_food(food, my_head)
 
-    
     if(len(next_movement) == 0):
         move = "down"
-    
-    if closest_food_possible is not None:
-        move = get_food(next_movement, my_head, closest_food_possible)
+    else: 
+        if closest_food_possible is not None:
+            move = get_food(next_movement, my_head, closest_food_possible)
+        else:
+            next_movement = list(next_movement.keys())
+            move = random.choice(next_movement)
 
-    else:
-        next_movement = list(next_movement.keys())
-        move = random.choice(next_movement)
-        
     print(move)
     
     return move
