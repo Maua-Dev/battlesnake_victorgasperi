@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from mangum import Mangum
-from .logic.move_logic import choose_direction
+from .move_logic.move_logic import choose_direction
 
 app = FastAPI()
 
