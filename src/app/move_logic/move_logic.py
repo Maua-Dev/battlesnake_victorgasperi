@@ -22,8 +22,10 @@ def choose_direction(request: dict) -> str:
 
     next_movement = set_next_movement_dict(my_head)
 
-    next_movement = avoid_body(my_body, next_movement)
     next_movement = avoid_wall(board_width, board_height, next_movement)
+
+    next_movement = avoid_body(my_body, next_movement)
+    
     next_movement = avoid_snake(other_snakes, next_movement)
     closest_food_possible = closest_food(food, my_head)
 
