@@ -1,5 +1,5 @@
-def get_head_coordinates():
-    return get_body_coordinates[0]
+def get_head_coordinates(request: dict):
+    return request["you"]["head"]
 
 def get_body_coordinates(request: dict):
     return request["you"]["body"]
