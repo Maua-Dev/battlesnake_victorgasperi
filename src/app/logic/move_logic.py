@@ -94,7 +94,7 @@ def choose_direction(request: dict) -> str:
     other_snakes = request["board"]["snakes"]
     food = request["board"]["food"]
 
-    next_movement = {
+    next_movement = { 
         "up": {
             "x": my_head["x"],
             "y": my_head["y"] + 1,
@@ -122,13 +122,13 @@ def choose_direction(request: dict) -> str:
     if(len(next_movement) == 0):
         move = "down"
     
-    if closest_food_possible is None:
-        next_movement = list(next_movement.keys())
-    else:
+    if closest_food_possible is not None:
         move = get_food(next_movement, my_head, closest_food_possible)
 
-    move = random.choice(next_movement)
-
+    else:
+        next_movement = list(next_movement.keys())
+        move = random.choice(next_movement)
+        
     print(move)
     
     return move
