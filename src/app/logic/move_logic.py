@@ -124,9 +124,10 @@ def choose_direction(request: dict) -> str:
     
     if closest_food_possible is None:
         next_movement = list(next_movement.keys())
-        move = random.choice(next_movement)
     else:
         move = get_food(next_movement, my_head, closest_food_possible)
+
+    move = random.choice(next_movement)
 
     print(move)
     
