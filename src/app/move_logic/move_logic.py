@@ -19,7 +19,6 @@ def choose_direction(request: dict) -> str:
     board_width = get_board_width(request)
     other_snakes = get_other_snakes_coordinates(request)
     food = get_food_coordinates(request)
-    health = get_health(request)
     
 
     next_movement = set_next_movement_dict(my_head)
