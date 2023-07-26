@@ -1,6 +1,5 @@
 from scipy import spatial
 
-
 def closest_food(foods, head):
     food_positions = []
 
@@ -28,3 +27,11 @@ def get_food(next_movement, head, food_position):
             return direction
         
     return list(next_movement.keys())
+
+def check_if_has_eaten(food_position, head, health):
+    previous_health = health
+    if head["x"] == food_position["x"] and head["y"] == food_position["y"]:
+        if previous_health < health:
+            return True
+        else:
+            return False

@@ -1,6 +1,6 @@
 import random
 from ..body_handler.body_handler import avoid_body
-from ..food_handler.food_handler import closest_food, get_food
+from ..food_handler.food_handler import closest_food, get_food, check_if_has_eaten
 from ..snakes_handler.other_snakes_handler import avoid_snake
 from ..walls_handler.walls_handler import avoid_wall
 from ..request_handler.request_handler import get_board_height, get_board_width, get_body_coordinates, get_food_coordinates, get_head_coordinates, get_other_snakes_coordinates
@@ -19,6 +19,8 @@ def choose_direction(request: dict) -> str:
     board_width = get_board_width(request)
     other_snakes = get_other_snakes_coordinates(request)
     food = get_food_coordinates(request)
+    health = get_health(request)
+    
 
     next_movement = set_next_movement_dict(my_head)
 
